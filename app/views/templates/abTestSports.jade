@@ -1,0 +1,47 @@
+script(type='text/x-handlebars', data-template-name='ab-test-sports')
+  <div class='background sports'>
+  <div {{bindAttr class="view.sportsHero.css"}}>
+  .jumbotron.masthead
+    img(src="/images/standup/standup-logo.png", class="logo")
+    .product-shots.clearfix
+      </div>
+  .container
+    .row-fluid
+      .span12
+        h1 Welcome to <span class="logo-color">CourtSnide</span>
+        h3 Discover what&#39;s really popular, find new shows to watch and discuss with other fans.
+        .signup
+          h4 Be smart. Join the beta first.
+          form
+            div#emailGroup.control-group
+              div.controls
+                {{view view.emailTextField valueBinding="view.email" placeholder="Email"}}
+                div.clear-divs
+                span.help-inline {{view.emailError}}
+                .disclaimer Don't worry. We won't sell or spam your email.
+            <button class="green" {{action "showEmail" target="parentView"}}>Submit</button>
+      .clear
+      .upsell.clearfix
+          .span4
+            h2.img
+              img(src="images/golf/check.png")
+            h2 Rate shows you watch
+            h5 Vote thumbs up or thumbs down for any show you watch and influence the rating.
+            h5 Like RottenTomatoes, see if the overall reaction was positive or negative, directly from the people who watch it.
+          .span4
+            h2.img
+              img(src="images/golf/check.png")
+            h2 See what&#39;s popular
+            h5 Was that episode of Breaking Bad really as good as critics said? See what the real audience thought.
+            h5 Join the discussion with the people that watte the show and talk about what you liked (or disliked)
+          .span4
+            h2.img
+              img(src="images/golf/check.png")
+            h2 Save your place in line
+            h5 Sign up and join the closed beta now. We are launching a limited release so sign up early.
+            h5 CrowdTV arrives Spring 2013.
+      .clear
+  </div>
+  </div>
+  
+  {{view view.emailSubmitView}}

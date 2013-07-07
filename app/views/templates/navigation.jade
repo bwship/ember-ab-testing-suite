@@ -1,0 +1,102 @@
+script(type='text/x-handlebars', data-template-name='navigation')
+  nav#mainNavBar.navbar.navbar-static-top.navbar-inverse
+    .navbar-inner
+      ul.nav
+        li 
+          <a {{action doHome}} {{bindAttr class="view.hideLogout"}} href="#">Home</a>
+        li#abGolf 
+          <a {{action doAbTestGolf}} {{bindAttr class="view.hideLogout"}} href="#">Golf</a>
+        li#abBowling 
+          <a {{action doAbTestBowling}} {{bindAttr class="view.hideLogout"}} href="#">Bowling</a>
+        li#abCommentary 
+          <a {{action doAbTestCommentary}} {{bindAttr class="view.hideLogout"}} href="#">Commentary</a>
+        li#abPandora 
+          <a {{action doAbTestPandora}} {{bindAttr class="view.hideLogout"}} href="#">Pandora</a>
+        li#abTelevision 
+          <a {{action doAbTestTelevision}} {{bindAttr class="view.hideLogout"}} href="#">TV</a>
+        li#abStandup
+          <a {{action doAbTestStandup}} {{bindAttr class="view.hideLogout"}} href="#">Standup</a>
+        li#abSports
+          <a {{action doAbTestSports}} {{bindAttr class="view.hideLogout"}} href="#">Sports</a>
+        li#adminAbTest 
+          <a {{action doAdminAbTest}} {{bindAttr class="view.hideLogout"}} href="#">Admin</a>
+        li#adminUserTests 
+          <a {{action doAdminUserTests}} {{bindAttr class="view.hideLogout"}} href="#">Tests</a>
+        li
+          <a {{action showAbout target="parentView"}} {{bindAttr class="view.hideLogin :join"}} href="#">About Us</a>
+        li 
+          <a {{action showFAQ target="parentView"}} {{bindAttr class="view.hideLogin :join"}} href="#">FAQ</
+
+      ul.nav.offset1.pull-right
+        li
+          <a {{action logout target="parentView"}} {{bindAttr class="view.hideLogout :join"}} href="#">Sign Out</a>
+        li 
+          <a {{action showSignIn target="parentView"}} {{bindAttr class="view.hideLogin :join"}} href="#">Sign In</a>
+        li
+          <a {{action showJoin target="parentView"}} {{bindAttr class="view.hideLogin :join :orange"}} href="#">Join the Beta</a>
+        
+  #signIn(class='modal fade', data-backdrop="static", aria-hidden="true")
+    .modal-header        
+      <button class="close" {{action "cancelSignIn" target="parentView"}}>&times;</button>
+      h3 Sign In            
+    .modal-body  
+      form.form-horizontal
+        .signin-group.control-group
+          label.control-label
+          .controls
+            span.help-inline {{view.login.error}} 
+          label.control-label Email
+          .controls
+            .input-prepend
+              span.add-on
+                i.icon-envelope                        
+            {{view view.signInTextField valueBinding="view.login.username" type="email" placeholder="Enter your email address"}}
+        .signin-group.control-group
+          label.control-label Password
+          .controls
+            .input-prepend
+              span.add-on
+                i.icon-lock
+            {{view view.signInTextField valueBinding="view.login.password" type="password" placeholder="Enter your password"}}                        
+    .modal-footer
+      <button class="btn" {{action "cancelSignIn" target="parentView"}}>Cancel</button>
+      <button class="btn btn-primary" {{action "signIn" target="parentView"}}>Sign In</button> 
+
+  #join(class='modal fade', data-backdrop="static", aria-hidden="true")
+    .modal-header
+      h2 We are over capacity!
+      <a class="join-close" href="" {{action "cancelJoin" target="parentView"}}>Close</a>
+    .modal-body
+      h5 To get on the waiting list give us your email<br>and be notified when we have more space.
+      form
+        #emailGroup.control-group
+          .controls
+            {{view Ember.TextField valueBinding="view.email" class="join-input" placeholder="Add email to waiting list"}}
+            <button class="green join-submit" {{action "sendEmail" target="parentView"}}>Join</button>
+
+  #faq-modal(class='modal fade', data-backdrop="static", aria-hidden="true")
+    .modal-header        
+      <a class="exit" {{action "closeFAQ" target="parentView"}}>&times;</a>
+      h3 FAQ
+    .modal-body  
+      h3 Oh, hello. 
+      ul
+        li.question Is there a planned date for release?
+        li.answer *cough* Spring *cough* 2013
+        li.question How can I find out more?
+        li.answer We are still in beta development, so the best way to get the lastest is to join our mailing list. Plus you'll be the first to know about the release (and special features).     
+        li.question Do you have any job openings?
+        li.answer We are currently not looking, but are always in the look out for good talent. Hit us up at info@nextstudios.com if you think you have the goods.    
+    .modal-footer
+
+  #about-modal(class='modal fade', data-backdrop="static", aria-hidden="true")
+    .modal-header        
+      <a class="exit" {{action "closeAbout" target="parentView"}}>Close</a>
+      h3 About Us  
+    .modal-body  
+      p We are "Next Studio", an amazing collective of developers and designers hellbent on creating rich, immersive apps for both web and mobile.
+      p Stay tuned as we conquer the world with our crazy new ideas.
+      p While we are keeping busy making crazy cool new apps you can always reach out and contact us.
+      h4 info@nextstudioapps.com
+
+  {{view view.emailSubmitView}}

@@ -1,0 +1,18 @@
+script(type='text/x-handlebars', data-template-name='email-submit')
+  #emailSubmit(class='modal fade', aria-hidden="true")
+    .modal-header        
+      h3 You&#39;re on the waiting list!
+    .modal-body
+      h3 Move to the front of the line
+      h4 Share your unique link and get the goods first.
+      .share-link
+        p
+      ul
+        li
+          <a {{action "twitterClicked" target="parentView"}}>
+          <img src="images/share-twitter.png">
+          </a>
+        li
+          <a {{action "facebookClicked" target="parentView"}}>
+          <img src="images/share-facebook.png">
+          </a>

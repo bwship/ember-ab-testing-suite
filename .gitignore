@@ -1,0 +1,19 @@
+.DS_Store
+
+# dotcloud files
+.dotcloud/*
+app/.dotcloud/*
+
+# javascripts files (compiled from coffeescript)
+app/cloud_code/cloud/*.js
+app/app.js
+app/routes/*.js
+app/public/javascripts/
+app/server/javascripts/
+cloud_code/cloud/*.js
+
+# local stylesheet that is compiled from less
+app/public/stylesheets/*.css
+
+# codekit configuration file
+codekit-config.json

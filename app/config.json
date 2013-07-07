@@ -1,0 +1,7 @@
+{
+  "LANDING_PAGE_PORT": 3003,
+  "LANDING_PAGE_DEBUG_MODE": true,
+  "LANDING_PAGE_TEST_MODE_NAME": "standup",
+  "parseApiKey": "VM1SxOcfuliLZp1PxGoTQOlijfHd6RomyIsD4IaI",
+  "parseJavascriptKey": "d9HEcBqJolfma4S04eVtuuDvHlynU2pRe8i1fHps"
+}

@@ -1,0 +1,52 @@
+script(type='text/x-handlebars', data-template-name='ab-test-standup')
+  <div class='background standup'>
+  <div {{bindAttr class="view.standupEmailCopy.css"}}>
+  .jumbotron.masthead
+    img(src="/images/standup/standup-logo.png", class="logo")
+    .product-shots.clearfix
+      img(src="/images/standup/hero.png", class="product-image")
+  .container
+    .row-fluid
+      .span12
+        h1 Discover new comedians based on your tastes.
+        h3 What Pandora does for music, we do for comedy. 
+        .signup
+          h4 Find new comedians now!
+          form
+            div#emailGroup.control-group
+              div.controls
+                {{view view.emailTextField valueBinding="view.email" placeholder="Email"}}
+                div.clear-divs
+                span.help-inline {{view.emailError}}
+                .disclaimer Don&#39;t worry. We won&#39;t sell or spam your email.
+                <button class="green" {{action "showEmail" target="parentView"}}>Join</button>
+      .clear
+      .upsell.clearfix
+          .span4
+            h2.img
+              img(src="images/golf/check.png")
+            h2 You laugh, we learn
+            h5 Vote up or down for any clip you watch and influence what we play next.
+            h5 Like Pandora, our comedy genome is expanding rapidly and this is just the beginning.
+          .span4
+            h2.img
+              img(src="images/golf/check.png")
+            h2 See what&#39;s popular
+            h5 Watch new and trending clips from up and coming comedians before they hit it big as well as your favorites.
+            h5 JOur goal is to expose talented comedians that deserve a piece of the spotlight.
+          .span4
+            h2.img
+              img(src="images/golf/check.png")
+            h2 Share the laughs
+            h5 Easily share with your friends the best clips and get credit for having the best sense of humor. Only if you want, of course.
+            h5 StandUp arrives Spring 2013
+      .clear
+  </div>
+  </div>
+
+  footer
+    ul
+      li © 2012 Next Studio
+      li 
+        a(href="/privacy", target="_blank") Privacy Policy
+  {{view view.emailSubmitView}}

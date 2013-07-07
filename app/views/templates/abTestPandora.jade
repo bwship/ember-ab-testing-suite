@@ -1,0 +1,76 @@
+script(type='text/x-handlebars', data-template-name='ab-test-pandora')
+  <div class='background pandora'>
+  .jumbotron.masthead
+    img(src="/images/pandora/pandora-logo.png", class="logo")
+    <div {{bindAttr class="view.pandoraSocialProof.css"}}>    
+    <a class="social-proof-link" {{action "socialClick" target="parentView"}}>
+    img(src="/images/pandora/pandora-social-proof.png", class="social-proof")
+    </a>
+    </div>
+    <div {{bindAttr class="view.pandoraYouTube.css"}}>    
+    .product-shots.clearfix
+      img(src="/images/pandora/hero.png", class="product-image")
+      <a class="product-video" {{action "youtubeClick" target="parentView"}} href="#"></a>
+    </div>
+  .container
+    .row-fluid
+      .span12
+        h1 Laughs based on what you like.
+        h3 Because your sense of humor is<br>unique, discover amazing comedy based on what you enjoy.
+        .signup
+          h4 Be smart. Join the beta first.
+          form
+            div#emailGroup.control-group
+              div.controls
+                {{view view.emailTextField valueBinding="view.email" placeholder="Email"}}
+                div.clear-divs
+                span.help-inline {{view.emailError}}
+                <div {{bindAttr class="view.pandoraEmailCopy.css"}}>
+                .disclaimer Don&#39;t worry. We won&#39;t sell or spam your email.
+                </div>
+                <button class="green" {{action "showEmail" target="parentView"}}>Submit</button>
+      .clear
+      .upsell.clearfix
+          .span4
+            h2.img
+              img(src="images/golf/check.png")
+            h2 YouTube needs help
+            h5 Finding funny content on YouTube is a chore, that is why LaughBot helps your discover based on your interests.
+            h5 The more you watch, the more LaughBot learns about your sense of humor and can pick the funnies you'll enjoy.
+          .span4
+            h2.img
+              img(src="images/golf/check.png")
+            h2 What Makes You Laugh
+            h5 Find out what makes you laugh. As LaughBot figures what you like, it'll tell you some facts about your sense of humor.
+            h5 Are you more into West Coast or East Coast humor? Sketch comedy or stand up? Find out!
+          .span4
+            h2.img
+              img(src="images/golf/check.png")
+            h2 Save your place in line
+            h5 Sign up and join the closed beta now. We are launching a limited release so sign up early.
+            h5 LaughBot arrives Spring 2013.
+      .clear
+  </div>
+
+  footer
+    ul
+      li © 2012 Next Studio
+      li 
+        a(href="/privacy", target="_blank") Privacy Policy
+        
+  //
+    a#faq &nbsp
+    #faq-container.jumbotron.masthead
+      h2 Frequently Asked Questions
+      ul
+        li
+          h4.question How do I hit the ball?
+          h4.answer Your phone is now your virtual golf club. Just take a swing and the accelometer will determine where the virtual ball goes.
+        li
+          h4.question Do I need to retrieve the ball?
+          h4.answer No, but you can earn bonus points as well as special rewards for collecting your balls. You can collect your virtual balls at anytime, they never expire.
+        li
+          h4.question How do I win?
+          h4.answer Play against your friends or try and beat your own score. The fun never ends!
+  
+  {{view view.emailSubmitView}}

@@ -1,0 +1,59 @@
+script(type='text/x-handlebars', data-template-name='admin-user-tests')
+  .container.admin
+    .row
+      .span10.offset1
+        h3 Current Users A/B Tests
+          
+    .row
+      .span10.offset1
+        table.table.table-bordered
+          caption User Tests
+          thead
+            tr
+              th Name
+              th Value
+          tbody
+            {{#each item in view.userTests}}
+            tr
+              td {{item.test.name}} 
+              td.option-column 
+                .btn-group(data-toggle='buttons-radio')
+                  <button {{bindAttr class=":btn item.isValueA:active:''"}} {{action "toggleUserTest" item target="parentView"}}>A</button>
+                  <button {{bindAttr class=":btn item.isValueA:'':active"}} {{action "toggleUserTest" item target="parentView"}}>B</button>
+            {{/each}}
+
+    .row
+      .span10.offset1
+        table.table.table-bordered
+          caption Cookie
+          thead
+            tr
+              th Key
+              th Value
+          tbody
+            tr
+              td {{view.testCookie.key}}
+              td {{view.testCookie.value}}
+
+    .row
+      .span10.offset1
+        #accordion.accordian
+          .accordian-group
+            .accorion-heading
+              a.accordion-toggle(data-toggle='collapse', data-parent='#accordion', href='#collapseOne') 
+                h5 Notes
+
+            #collapseOne.accordion-body.collapse.in
+              .accordion-inner
+                .alert.alert-info
+                  h5 User Tests
+
+                  ul
+                    li These are the test settings for the current user on the page
+                  
+                .alert.alert-info
+
+                  h5 Cookie
+
+                  ul
+                    li This is the name of the cookie stored locally and the value matches the UserCookie value in the database

@@ -1,0 +1,33 @@
+script(type='text/x-handlebars', data-template-name='home')
+	.home.clearfix
+		.navbar.navbar-static-top.navbar-inverse
+			.navbar-inner
+				img(src="/images/home/rocket-small.png")
+				ul.nav.offset1.pull-left.nav-logo
+					li Next Studio
+				ul.nav.offset1.pull-right
+					li
+						a(href="#aboutModal", data-toggle="modal") About Us
+					li
+						a(href="#contactModal", data-toggle="modal") Contact
+		.row-fluid
+			.span12
+				.hero
+					img(src="/images/home/hero.png")
+				.extra
+					.extra-inner
+						h3 Landing 2013
+
+div(id="aboutModal", class="modal fade", tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+	.modal-header
+		img(src="/images/home/about.png")
+	.modal-body
+		p "Next Studio" is an amazing collective of developers and designers hellbent on creating rich, immersive apps for both web and mobile.
+		p Stay tuned as we conquer the world with our crazy new ideas.
+
+div(id="contactModal", class="modal fade", tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+	.modal-header
+		img(src="/images/home/contact.png")
+	.modal-body
+		p While we are keeping busy making crazy cool new apps <br> you can always reach out and contact us.
+		h2 info@nextstudioapps.com

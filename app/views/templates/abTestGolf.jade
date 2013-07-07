@@ -1,0 +1,70 @@
+script(type='text/x-handlebars', data-template-name='ab-test-golf')
+  <div class='background golf'>
+  <div {{bindAttr class="view.golfLayout.css"}}>
+  .jumbotron.masthead
+    img(src="/images/golf/city-golf-logo.png", class="logo")
+    .product-shots.clearfix
+      img(src="/images/golf/iphone-front.png")
+      .sidebar
+        .row-fluid
+          .span12
+            img(src="/images/golf/city-golf-logo.png", class='side-logo')
+            h1 Finally, your city is a golf course.
+            h3 Finally, your city is a golf course.
+            .signup
+              h4 Be cool. Get it first.
+              form
+                div#emailGroup.control-group
+                  div.controls
+                    {{view view.emailTextField valueBinding="view.email" placeholder="Email" type="email"}}
+                    div.clear-divs
+                    span.help-inline {{view.emailError}}
+                <button class="green" {{action "showEmail" target="parentView"}}>Submit</button>
+  .container
+    .row-fluid
+      .span12
+        h1 Finally, your city is a golf course.
+        .signup
+          h4 Be cool. Get it first.
+          form
+            div#emailGroup.control-group
+              div.controls
+                {{view view.emailTextField valueBinding="view.email" placeholder="Email" type="email"}}
+                div.clear-divs
+                span.help-inline {{view.emailError}}
+            <button class="green" {{action "showEmail" target="parentView"}}>Submit</button>
+      .clear
+      .upsell.clearfix
+          .span4
+            h2.img
+              img(src="images/golf/check.png")
+            h2 Infinite Levels
+            h5 No two courses are alike. City Golf creates a brand new course based on your location, so you know every game will be different than the last. 
+          .span4
+            h2.img
+              img(src="images/golf/check.png")
+            h2 Fun Hazards
+            h5 What&#39;s more fun than hitting golf balls in your neighborhood? Breaking stuff in the process (without breaking any laws)! Hit landmarks, restaurants, and even other players! 
+          .span4
+            h2.img
+              img(src="images/golf/check.png")
+            h2 Tour the World
+            h5 You can play in any city you want. Want to hit golf balls in Disneyland? Shoot off the Eiffel Tower? Do it from your bedroom!
+      .clear
+  </div>
+  a#faq &nbsp
+  #faq-container.jumbotron.masthead
+    h2 Frequently Asked Questions
+    ul
+      li
+        h4.question How do I hit the ball?
+        h4.answer Your phone is now your virtual golf club. Just take a swing and the accelometer will determine where the virtual ball goes.
+      li
+        h4.question Do I need to retrieve the ball?
+        h4.answer No, but you can earn bonus points as well as special rewards for collecting your balls. You can collect your virtual balls at anytime, they never expire.
+      li
+        h4.question How do I win?
+        h4.answer Play against your friends or try and beat your own score. The fun never ends!
+  </div>
+  
+  {{view view.emailSubmitView}}

@@ -1,0 +1,283 @@
+script(type='text/x-handlebars', data-template-name='admin-ab-test')
+  .container.admin
+    .row
+      .span8.offset1
+        h3 Landing Page Administration
+
+    .row
+      .span3.pull-right
+        <button class="btn btn-primary" {{action "showTestModeAdd" target="parentView"}}>Add New Landing Page</button>
+
+    .row
+      .span10.offset1
+        table.table
+          thead
+            tr
+              th Select Landing Page
+              th Mix Panel Token
+              th MailChimp Group Name
+              th Test Mode
+              th Options
+          tbody
+            tr
+              td.option-column {{view Ember.Select contentBinding="view.testModes" optionLabelPath="content.name" optionValuePath="content.objectId" selectionBinding="view.currentTestMode" }}
+              td {{view.currentTestMode.mixPanelToken}}
+              td {{view.currentTestMode.mailChimpGroupName}}
+              td {{view.currentTestMode.testMode}}
+              td.option-column
+                <a {{action "showTestModeEdit" item target="parentView"}} href="#" class='btn'><i title='Edit this landing page' class='icon-edit'></i></a>
+                <a {{action "showTestModeDelete" item target="parentView"}} href="#" class='btn'><i title='Remove this landing page' class='icon-trash'></i></a>
+
+    .row
+      .span10.offset1
+        table.table
+          thead
+            tr
+              th Page Title
+              th Page Image
+              th Page Description
+          tbody
+            tr
+              td {{view.currentTestMode.pageTitle}}
+              td {{view.currentTestMode.pageImage}}
+              td {{view.currentTestMode.pageDescription}}
+
+    .row
+      .span10.offset1
+        table.table
+          thead
+            tr
+              th Confirmation Email Subject
+              th Confirmation Email Body
+          tbody
+            tr
+              td {{view.currentTestMode.confirmEmailSubject}}
+              td {{view.currentTestMode.confirmEmailBody}}
+
+    .row
+      .span3.pull-right
+        <button class="btn btn-primary" {{action "showTestEdit" target="parentView"}}>Add New Test</button>
+
+    .row
+      .span9.offset2
+        table.table.table-bordered.table-striped
+          caption Tests
+          thead
+            tr
+              th Name
+              th Description
+              th Test A Text
+              th Test B Text
+              th Options
+          tbody
+            {{#each item in view.tests}}
+            tr
+              td {{item.name}}
+              td {{item.description}}
+              td {{item.aTestText}}
+              td {{item.bTestText}}
+              td.option-column 
+                <a {{action "showTestEdit" item target="parentView"}} href="#" class='btn'><i title='Edit this test' class='icon-edit'></i></a>
+                <a {{action "showTestDelete" item target="parentView"}} href="#" class='btn'><i title='Remove this test' class='icon-trash'></i></a>
+            {{/each}}
+
+    .row.hide
+      .span9.offset2
+        table.table.table-bordered.table-striped
+          caption Confirmation Email Test
+          thead
+            tr
+              th Test A Subject
+              th Test A Body
+              th Test B Subject
+              th Test B Body
+              th Options
+          tbody
+            {{#each item in view.tests}}
+            tr
+              td {{item.name}}
+              td {{item.description}}
+              td {{item.name}}
+              td {{item.description}}
+              td.option-column 
+                <a {{action "showTestEdit" item target="parentView"}} href="#" class='btn'><i title='Edit this email' class='icon-edit'></i></a>
+            {{/each}}
+
+    .row
+      .span10.offset1
+        #accordion.accordian
+          .accordian-group
+            .accorion-heading
+              a.accordion-toggle(data-toggle='collapse', data-parent='#accordion', href='#collapseOne') 
+                h5 Notes
+
+            #collapseOne.accordion-body.collapse.in
+              .accordion-inner
+                .alert.alert-info
+                  h5 Instructions
+
+                  ol
+                    li Add the landing page above
+                    li Add tests to the landing page above
+                    li Update the public/coffeescript/app.coffee router section with the new test (have it compile down to javascript using CodeKit)
+                    li Update the public/coffeescripts/navigationView.coffee with the new landing page in the menu (have it compile down to javascript using CodeKit)
+                    li Add an abTest[LandingPage]View.coffee file for the landing page in the public/coffeescripts/ folder
+                    li Add an abTest[LandingPage].jade for the landing page in the views/templates/ folder
+                    li Add the abTest[LandingPage]View.js and abTest[LandingPage].jade to the views/layout.jade file
+
+                .alert.alert-info
+                  h5 Landing Page Defintions
+
+                  ul
+                    li Name - the name of the landing page
+                    li Mix Panel Token - the token used for the mix panel project used for tracking events
+                    li MailChimp Group Name - the group name used to send submitted emails to a mailchimp group
+                    li Test Mode - the landing page mode name (this is abTest[Testmode] ex abTestBowling)
+                    li Page Title - the title that shows up on the top of the landing page
+                    li Page Image - the image to be used for facebook sharing
+                    li Page Description - the description to be used for facebook sharing
+                    li Confirmation Email Subject - the subject of the email that is sent out when a user enters their email on a landing page
+                    li Confirmation Email Body - the body of the email that is sent out when a user enters their email on a landing page
+
+                .alert.alert-info
+
+                  h5 Test Definitions
+
+                  ul
+                    li Name - the name of the test, it should be in the format testItem where the first part of the name is the same for every particular case, and the second word is the individual item that is tested
+                      ul
+                        li CSS should be set as name-A and name-B in a css stylesheet
+                    li Description - a detailed description of what the test does
+                    li Test A Text - (optional field that is used to set text for a test case on the test page)
+                    li Test B Text - (optional field that is used to set text for a test case on the test page)
+
+                .alert.alert-info
+
+                  h5 Usertest Overrides
+
+                  p You can override a user test by providing one or many querystring parameters.  The exact name of the user test should be used.  If there are spaces the %20 should be used in place of the space.
+
+                  p Examples 
+
+                  ul
+                    li http://laughcast.nextstudioapps.com/#/?u=above
+                    li http://laughcast.nextstudioapps.com/#/?u=above%20the%20fold
+                    li http://laughcast.nextstudioapps.com/#/?u=above%20the%20fold&u=largeTitle
+
+   #testModeEdit(class='modal fade', data-backdrop="static", aria-hidden="true")
+    .modal-header        
+      <button class="close" {{action "cancelTestModeEdit" target="parentView"}}>&times;</button>
+      h3 Landing Page Editor
+    .modal-body
+      form.form-horizontal
+        .control-group
+          label.control-label Name
+          .controls
+            {{view Ember.TextField valueBinding="view.testMode.name" placeholder="Enter the landing page name" }}
+        .control-group
+          label.control-label Mix Panel Token
+          .controls
+            {{view Ember.TextField valueBinding="view.testMode.mixPanelToken" placeholder="Enter mixpanel token" }}
+        .control-group
+          label.control-label MailChimp Group Name
+          .controls
+            {{view Ember.TextField valueBinding="view.testMode.mailChimpGroupName" placeholder="Enter mailchimp group name" }}
+        .control-group
+          label.control-label Test Mode
+          .controls
+            {{view Ember.TextField valueBinding="view.testMode.testMode" placeholder="Enter the test mode"}}
+        .control-group
+          label.control-label Page Title
+          .controls
+            {{view Ember.TextArea valueBinding="view.testMode.pageTitle" placeholder="Enter the page title"}}
+        .control-group
+          label.control-label Page Image
+          .controls
+            {{view Ember.TextArea valueBinding="view.testMode.pageImage" placeholder="Enter the page image"}}
+        .control-group
+          label.control-label Page Description
+          .controls
+            {{view Ember.TextArea valueBinding="view.testMode.pageDescription" placeholder="Enter the page description"}}
+        .control-group
+          label.control-label Confirm Email Subject
+          .controls
+            {{view Ember.TextArea valueBinding="view.testMode.confirmEmailSubject" placeholder="Enter the confirmation email subject"}}
+        .control-group
+          label.control-label Confirm Email Body
+          .controls
+            {{view Ember.TextArea valueBinding="view.testMode.confirmEmailBody" placeholder="Enter the confirmation email body"}}
+    .modal-footer
+      <button class="btn" {{action "cancelTestModeEdit" target="parentView"}}>Cancel</button>
+      <button class="btn btn-primary" {{action "saveTestMode" target="parentView"}}>Save</button>
+
+  #testModeDelete(class='modal fade', data-backdrop="static", aria-hidden="true")
+    .modal-header        
+      <button class="close" {{action "cancelTestModeDelete" target="parentView"}}>&times;</button>
+      h3 Delete Test Mode
+    .modal-body
+      p This will remove the test mode.  Click the Red Delete button below to remove this test mode. 
+    .modal-footer
+      <button class="btn" {{action "cancelTestModeDelete" target="parentView"}}>Cancel</button>
+      <button class="btn btn-danger" {{action "deleteTestMode" target="parentView"}}>Delete</button>
+
+   div#testEdit(class='modal fade', data-backdrop="static", aria-hidden="true")
+    div.modal-header        
+      <button class="close" {{action "cancelTestEdit" target="parentView"}}>&times;</button>
+      h3 Test Editor
+    div.modal-body
+      form.form-horizontal
+        div.control-group
+          label.control-label Name
+          div.controls
+            {{view Ember.TextField valueBinding="view.test.name" placeholder="Enter test name" }}
+        div.control-group
+          label.control-label Description
+          div.controls
+            {{view Ember.TextArea valueBinding="view.test.description" placeholder="Enter a description"}}
+        div.control-group
+          label.control-label Test A Text (Optional)
+          div.controls
+            {{view Ember.TextArea valueBinding="view.test.aTestText" placeholder="Enter test A text"}}
+        div.control-group
+          label.control-label Test B Text (Optional)
+          div.controls
+            {{view Ember.TextArea valueBinding="view.test.bTestText" placeholder="Enter test B text"}}
+    div.modal-footer
+      <button class="btn" {{action "cancelTestEdit" target="parentView"}}>Cancel</button>
+      <button class="btn btn-primary" {{action "saveTest" target="parentView"}}>Save</button>
+
+  div#testDelete(class='modal fade', data-backdrop="static", aria-hidden="true")
+    div.modal-header        
+      <button class="close" {{action "cancelTestDelete" target="parentView"}}>&times;</button>
+      h3 Delete Test
+    div.modal-body
+      p This will remove the test.  Click the Red Delete button below to remove this test. 
+    div.modal-footer
+      <button class="btn" {{action "cancelTestDelete" target="parentView"}}>Cancel</button>
+      <button class="btn btn-danger" {{action "deleteTest" target="parentView"}}>Delete</button>
+
+  div#testEmailEdit(class='modal fade', data-backdrop="static", aria-hidden="true")
+    div.modal-header        
+      <button class="close" {{action "cancelTestEmailEdit" target="parentView"}}>&times;</button>
+      h3 Confirmation Email Editor
+    div.modal-body
+      form.form-horizontal
+        div.control-group
+          label.control-label Test A Subject
+          div.controls
+            {{view Ember.TextField valueBinding="view.test.aTestSubject" placeholder="Enter test A subject" }}
+        div.control-group
+          label.control-label Test A Body
+          div.controls
+            {{view Ember.TextArea valueBinding="view.test.aTestBody" placeholder="Enter test A body"}}
+        div.control-group
+          label.control-label Test B Subject
+          div.controls
+            {{view Ember.TextField valueBinding="view.test.bTestSubject" placeholder="Enter test B subject" }}
+        div.control-group
+          label.control-label Test B Body
+          div.controls
+            {{view Ember.TextArea valueBinding="view.test.bTestBody" placeholder="Enter test B body"}}
+    div.modal-footer
+      <button class="btn" {{action "cancelTestEdit" target="parentView"}}>Cancel</button>
+      <button class="btn btn-primary" {{action "saveTest" target="parentView"}}>Save</button>

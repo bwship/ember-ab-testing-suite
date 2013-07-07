@@ -1,0 +1,111 @@
+doctype 5
+html
+  head
+    title= testModePageTitle
+
+    //- set the page description and image meta tags for facebook
+    meta(property="og:title", content=pageDescription)
+    meta(property="og:image", content=pageImage)
+
+    //- cdn for google fonts and bootstrap
+    link(href='//fonts.googleapis.com/css?family=Rambla', rel='stylesheet', type='text/css')
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css')
+
+    //- local styles
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/font-awesome.css')
+
+  body
+    #loading
+      h2 Loading...
+      h2 <i class="icon-spinner icon-spin"></i>
+
+    script(type='text/x-handlebars', data-template-name='application')
+      {{view Laffster.NavigationView}}    
+
+      {{outlet}}
+
+    // ember templates
+    include templates/home    
+    include templates/emailSubmit
+
+    //- only load the admin section for debug mode
+    include templates/navigation
+    include templates/admin
+    include templates/adminAbTest
+    include templates/adminUserTests
+    include templates/abTestGolf 
+    include templates/abTestBowling
+    include templates/abTestCommentary
+    include templates/abTestPandora
+    include templates/abTestTelevision
+    include templates/abTestStandup
+    include templates/abTestSports
+    include templates/navigation
+    //- library scripts
+
+    //- cdn for jquery and bootstrap
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+    script(src='//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js')
+
+    //- local libraries
+    script(src='/libs/handlebars-1.0.0.beta.6.min.js')
+    script(src='/libs/ember-1.0.0-pre.2.min.js')
+    script(src='/libs/parse-1.1.11.min.js')
+    script(src='/libs/mixpanel.min.js')
+    script(src='/libs/modernizr.custom.js')
+    script(src='/libs/jquery-inview.js')
+    //-script(src='/socket.io/socket.io.js')
+
+    //- ember application
+    script(src='/javascripts/app.js')
+
+    script(type='text/javascript')
+      Laffster.initConfiguration('!{testMode}', '!{testModePageTitle}', '!{testModeName}', !{debugMode}, '!{parseApiKey}', '!{parseJavascriptKey}');
+
+    //- ember helper
+    script(src='/javascripts/helpers.js')
+
+    //- ember models
+    script(src='/javascripts/dataModels.js')
+
+    //- ember data sources
+    script(src='/javascripts/dataSources.js')
+
+    //- ember controllers
+    script(src='/javascripts/accountController.js')
+    script(src='/javascripts/testController.js')   
+
+    //- ember views
+    script(src='/javascripts/emailSubmitView.js')
+    script(src='/javascripts/navigationView.js')
+    script(src='/javascripts/abTestBaseView.js')
+    script(src='/javascripts/homeView.js')
+
+    script(src='/javascripts/adminView.js')
+    script(src='/javascripts/adminAbTestView.js')
+    script(src='/javascripts/adminUserTestsView.js')
+    script(src='/javascripts/abTestGolfView.js')   
+    script(src='/javascripts/abTestBowlingView.js')
+    script(src='/javascripts/abTestCommentaryView.js')
+    script(src='/javascripts/abTestPandoraView.js')
+    script(src='/javascripts/abTestTelevisionView.js')
+    script(src='/javascripts/abTestStandupView.js')
+    script(src='/javascripts/abTestSportsView.js')
+
+    script(type="text/javascript")
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-37226401-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    script(src="https://www.proxino.com/p.js")
+
+    script(type="text/javascript")
+      Proxino.key = "muoWnavSYW3Ak5TVPiW8Cw";
+      Proxino.track_errors();

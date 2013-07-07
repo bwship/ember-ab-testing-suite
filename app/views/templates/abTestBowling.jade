@@ -1,0 +1,26 @@
+script(type='text/x-handlebars', data-template-name='ab-test-bowling')
+  <div class='background bowling'>
+  <div {{bindAttr class="view.bowlingDevice.css"}}>
+  .jumbotron.masthead
+    h2 The first multi-screen Bowling game is here.
+    .product-shots
+      .phone
+      .tablet
+  </div>
+  .container.signup
+    .row-fluid
+      .span12
+        h1 Finally, your phone is a bowling ball.
+        h3 With XXX, swing your phone&#39;s ball towards your tablet&#39;s pins and have fun.
+        .signup
+          h4 Be cool. Get it first.
+          form
+            div#emailGroup.control-group
+              div.controls
+                {{view view.emailTextField valueBinding="view.email" placeholder="Email"}}
+                div.clear-divs
+                span.help-inline {{view.emailError}}
+            <button class="blue" {{action "showEmail" target="parentView"}}>Submit</button>
+  </div>
+  
+  {{view view.emailSubmitView}}

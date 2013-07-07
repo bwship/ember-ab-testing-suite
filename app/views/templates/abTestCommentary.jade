@@ -1,0 +1,57 @@
+script(type='text/x-handlebars', data-template-name='ab-test-commentary')
+  <div class='background commentary'>
+  <div {{bindAttr class="view.commentaryBackground.css"}}>    
+  .jumbotron.masthead
+    img(src="/images/commentary/commentary-logo.png", class="logo")
+    <div {{bindAttr class="view.commentarySocialProof.css"}}>    
+    <a class="social-proof-link" {{action "socialClick" target="parentView"}}>
+    img(src="/images/commentary/commentary-social-proof.png", class="social-proof")
+    </a>
+    </div>
+    .product-shots.clearfix
+      img(src="/images/commentary/hero-3.png", class="product-image")
+  .container
+    .row-fluid
+      .span12
+        h1 Your favorite comedians making jokes during live events.
+        h3 From the Oscars to the Superbowl, there&#39;s an event for everyone to laugh at.
+        .signup
+          h4 Be cool. Get in first.
+          form
+            div#emailGroup.control-group
+              div.controls
+                {{view view.emailTextField valueBinding="view.email" placeholder="Email"}}
+                div.clear-divs
+                span.help-inline {{view.emailError}}
+            <button class="green" {{action "showEmail" target="parentView"}}>Submit</button>
+      .clear
+      .upsell.clearfix
+          .span4
+            h2.img
+              img(src="images/golf/check.png")
+            h2 Host the roast
+            h5 You can pledge your support of the comedian you would like paired up to live-cast a popular event.
+            h5 The result will be a hilarious riffing on the most popular events chosen by the community. 
+          .span4
+            h2.img
+              img(src="images/golf/check.png")
+            h2 Fight for your laughs
+            h5 Get your friends to vote up your choice so that you win. Sure, it's a bit shameless, but fortune favors the bold!
+            h5 Plus, those who pledge get the hilarious commentary. It's a win-win.
+          .span4
+            h2.img
+              img(src="images/golf/check.png")
+            h2 Save your place in line
+            h5 Sign up to be the first to hear when we open our doors. The advantage is picking the first comedians.
+            h5 And while everybody else might say it&#39;s unfair, well, you DID get here first.
+      .clear
+  </div>
+  </div>
+
+  footer
+    ul
+      li © 2012 Next Studio
+      li 
+        a(href="/privacy", target="_blank") Privacy Policy
+  
+  {{view view.emailSubmitView}}
